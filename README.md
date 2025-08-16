@@ -288,10 +288,9 @@ curl -H "Content-Type: application/json" \
 
 ## What’s in this repository
 
-* `advanced_https_ota/` — my ESP-IDF app (with `server_certs/ca_cert.pem` embedded).
-* `ota-chain/` — contract, compile script, Python deploy/publish scripts, gateway.
-* `docs/` — screenshots (17 images) and a short demo video of `idf.py build/flash/monitor`.
-  *(Put your images/video here; I kept filenames simple like `01-ganache.png`, `02-ipfs-add.png`, …, and `demo.mp4`.)*
+* `FortiESP32OTASecure/` — my ESP-IDF app (with `server_certs/ca_cert.pem` embedded).
+* `SetupOfMyRaspberryPi4/` — contract, compile script, Python deploy/publish scripts, gateway.
+* `fortiespproof/` — screenshots (17 images) and a short demo video of `idf.py build/flash/monitor`.
 
 ---
 
