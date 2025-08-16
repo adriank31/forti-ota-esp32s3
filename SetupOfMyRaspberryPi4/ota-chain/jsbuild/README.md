@@ -1,9 +1,3 @@
-Great question—this is exactly the kind of thing you *don’t* want to shove into GitHub. You should **not** commit `node_modules/`. Instead, commit the **recipe** (your `package.json` + `package-lock.json`) and tell people how to re-install the packages locally.
-
-Below is a drop-in `README.md` you can place inside `ota-chain/jsbuild/` that explains what belongs there, what to install, and how to re-generate `node_modules` on any machine.
-
----
-
 # `jsbuild/` — Solidity compiler helper
 
 This folder holds a tiny Node.js helper that compiles `contracts/FirmwareRegistry.sol` and drops the build artifacts (ABI + bytecode) into `../python/deployed/` for the Python scripts to deploy and interact with.
@@ -127,3 +121,4 @@ ota-chain/jsbuild/.npm/
 
 * Node.js downloads (choose an LTS build)
 * npm CLI docs (general usage, running package commands)
+
