@@ -1,0 +1,40 @@
+server {
+    listen 443 ssl;
+    server_name forti-ota-pi.local 192.168.1.167;
+
+    ssl_certificate     /etc/ssl/ipfs/server.crt;
+    ssl_certificate_key /etc/ssl/ipfs/server.key;
+    ssl_protocols TLSv1.2 TLSv1.3;
+
+    # Block Kubo RPC API path (defense-in-depth)
+    location /api/v0/ {
+        return 403;
+    }
+
+    # 2) Gateway JSON & ACK (Flask on 127.0.0.1:5050)
+    location /firmware/ {
+        proxy_pass http://127.0.0.1:5050/firmware/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $remote_addr;
+    }
+
+    location /ack {
+        proxy_pass http://127.0.0.1:5050/ack;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $remote_addr;
+    }
+
+    # Proxy everything else (esp. /ipfs/<CID>) to local gateway
+    location / {
+        proxy_pass http://127.0.0.1:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $remote_addr;
+    }
+}
+
+# (Optional) Redirect HTTP → HTTPS if you want a friendly port 80 entrypoint
+server {
+    listen 80;
+    server_name forti-ota-pi.local 192.168.1.167;
+    return 301 https://$host$request_uri;
+}
